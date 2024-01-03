@@ -3,22 +3,22 @@ import InputTypeContainer from "./InputTypeContainer";
 import { FindWinningProductContext } from "../../context/FindWinningProductContext";
 
 const InputDataContainer2 = () => {
-  const {
-    purchaseCost,
-    sellPrice,
-    qtySold,
-    cancelPercent,
-    rtoPercent,
-    adsCost,
-    rtoCost,
-    handleRtoCost
-    handlePurchseCost,
-    handleSellPrice,
-    handleQtySold,
-    handleCancelPercent,
-    handleRtoPercent,
-    handleAdsCost,
-  } = useContext(FindWinningProductContext);
+  // const {
+  //   purchaseCost,
+  //   sellPrice,
+  //   qtySold,
+  //   cancelPercent,
+  //   rtoPercent,
+  //   adsCost,
+  //   rtoCost,
+  //   handleRtoCost
+  //   handlePurchseCost,
+  //   handleSellPrice,
+  //   handleQtySold,
+  //   handleCancelPercent,
+  //   handleRtoPercent,
+  //   handleAdsCost,
+  // } = useContext(FindWinningProductContext);
 
   const inputFields = [
     {
