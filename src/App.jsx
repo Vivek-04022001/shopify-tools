@@ -20,7 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Header />}>
           <Route index element={<AfterSalesCalculation />} />
-          <Route path="find-winning-product" element={<FindWinningProduct />} />
+{/*           <Route path="find-winning-product" element={<FindWinningProduct />} /> */}
         </Route>
       </Routes>
     </div>
