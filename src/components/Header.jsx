@@ -32,14 +32,14 @@ const Header = () => {
             <Link to="/find-winning-product">Find Winning Product</Link>
           </li>
         </ul>
-        <div className="md:hidden flex items-center flex-col mt-4 ">
-          <h1>Dark mode</h1>
+        <div className="md:hidden flex items-center flex-col mt-4 gap-2">
+        <h1 className="text-center text-secondary">{darkMode ? 'Light Mode' : 'Dark Mode'}</h1>
           <DarkMode />
         </div>
       </header>
 
-      <div className="hidden md:block absolute top-0 left-0 space-y-2 m-4 p-1">
-        <h1>Dark mode</h1>
+      <div className="hidden  absolute top-0 left-0 space-y-2 m-4 p-1  md:flex flex-col justify-center gap-1">
+        <h1 className="text-center text-accent font-bold">{darkMode ? 'Light Mode' : 'Dark Mode'}</h1>
         <DarkMode />
       </div>
       <Outlet />

@@ -7,7 +7,7 @@ const DarkMode = () => {
   return (
     <input
       type="checkbox"
-      className="toggle toggle-lg md:toggle-xl toggle-primary "
+      className="toggle toggle-lg md:toggle-xl toggle-primary inline-block mx-auto"
       checked={darkMode}
       onChange={toggleDarkMode}
     />

@@ -10,7 +10,7 @@ const InputTypeContainer = ({ name, value, handleOnChange, min, max }) => {
         max={max}
         value={value}
         onChange={handleOnChange}
-        className="input input-bordered md:input-md input-sm "
+        className="input input-bordered md:input-md input-sm border border-accent"
       />
       <input
         type="range"

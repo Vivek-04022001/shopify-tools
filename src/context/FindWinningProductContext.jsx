@@ -10,15 +10,17 @@ export const FindWinningProductProvider = ({ children }) => {
   const [rtoPercent, setRtoPercent] = useState(0);
   const [adsCost, setAdsCost] = useState(0);
   const [rtoCost, setRtoCost] = useState(0);
+  const [effectiveRtoCost, setEffectiveRtoCost] = useState(0);
+  const [effectiveFacebookCost, setEffectiveFacebookCost] = useState(0);
+  const [revenue, setRevenue] = useState(0);
+  const [profitLoss, setProfitLoss] = useState(0);
   //   const [deliveredQty, setDeliveredQty] = useState(0);
   //   const [effectiveRtoCost, setEffectiveRtoCost] = useState(0);
-  //   const [revenue, setRevenue] = useState(0);
-  //   const [profitLoss, setProfitLoss] = useState(0);
   const [margin, setMargin] = useState(0);
   const [cancelQty, setCancelQty] = useState(0);
   const [rtoQty, setRtoQty] = useState(0);
 
-  const handlePurchseCost = (e) => setPurchaseCost(e.target.value);
+  const handlePurchaseCost = (e) => setPurchaseCost(e.target.value);
   const handleSellPrice = (e) => setSellPrice(e.target.value);
   const handleQtySold = (e) => setQtySold(e.target.value);
   const handleCancelPercent = (e) => setCancelPercent(e.target.value);
@@ -30,75 +32,62 @@ export const FindWinningProductProvider = ({ children }) => {
   const calculateMargin = () => setMargin(sellPrice - purchaseCost);
 
   const calculateCancelQty = () =>
-    setCancelQty(() => qtySold * (cancelPercent / 100));
+    setCancelQty(() => {return (qtySold * (cancelPercent / 100)).toFixed(2)});
+
+  const calculateRtoQty = () => setRtoQty(() => qtySold * (rtoPercent / 100));
+
+  const calculateEffectiveRtoCost = () => {
   
-    const calculateRtoQty = () =>
-    setRtoQty(() => qtySold * (rtoPercent / 100));
+    setEffectiveRtoCost(rtoCost * (rtoPercent * qtySold*0.01));
+  }
 
-  //   const calculateDeliveredQty = () => {
-  //     const qtySoldValue = parseInt(qtySold, 10) || 0;
-  //     const cancelOrderValue = parseInt(cancelOrder, 10) || 0;
-  //     const rtoProductValue = parseInt(rtoProduct, 10) || 0;
-  //     setDeliveredQty(qtySoldValue - (cancelOrderValue + rtoProductValue));
-  //   };
+  const calculateEffectiveFacebookCost = () =>
+    setEffectiveFacebookCost(adsCost * qtySold);
 
-  //   const calculateEffectiveRTOcost = () => {
-  //     const rtoProductValue = parseInt(rtoProduct, 10) || 0;
-  //     const rtoCostValue = parseInt(rtoCost, 10) || 0;
-  //     setEffectiveRtoCost(rtoProductValue * rtoCostValue);
-  //   };
+  const calculateRevenueCost = () => {
+    const qtySoldValue = parseInt(qtySold, 10) || 0;
+    const cancelOrderValue = parseInt(cancelQty, 10) || 0;
+    const rtoProductValue = parseInt(rtoQty, 10) || 0;
+    setRevenue(
+      sellPrice * (qtySoldValue - (rtoProductValue + cancelOrderValue))
+    );
+  };
 
-  //   const calculateRevenueCost = () => {
-  //     const qtySoldValue = parseInt(qtySold, 10) || 0;
-  //     const cancelOrderValue = parseInt(cancelOrder, 10) || 0;
-  //     const rtoProductValue = parseInt(rtoProduct, 10) || 0;
-  //     setRevenue(
-  //       sellPrice * (qtySoldValue - (rtoProductValue + cancelOrderValue))
-  //     );
-  //   };
+  const calculateProfitLoss = () => {
+    const revenueValue = parseFloat(revenue) || 0;
+    const facebookCostValue = parseFloat(effectiveFacebookCost) || 0;
+    const purchaseCostValue = parseFloat(purchaseCost) || 0;
+    const qtySoldValue = parseFloat(qtySold) || 0;
+    const rtoProductValue = parseFloat(effectiveRtoCost) || 0;
 
-  //   const calculateProfitLoss = () => {
-  //     const revenueValue = parseFloat(revenue) || 0;
-  //     const facebookCostValue = parseFloat(facebookCost) || 0;
-  //     const purchaseCostValue = parseFloat(purchaseCost) || 0;
-  //     const qtySoldValue = parseFloat(qtySold) || 0;
-  //     const cancelOrderValue = parseFloat(cancelOrder) || 0;
-  //     const rtoProductValue = parseFloat(rtoProduct) || 0;
-  //     const rtoCostValue = parseFloat(rtoCost) || 0;
+    const totalCost = purchaseCostValue * qtySoldValue + rtoProductValue;
 
-  //     const totalCost =
-  //       purchaseCostValue * qtySoldValue + rtoCostValue * rtoProductValue;
+    setProfitLoss((revenueValue - facebookCostValue - totalCost).toFixed(2));
+  };
 
-  //     setProfitLoss(revenueValue - facebookCostValue - totalCost);
-  //   };
+  useEffect(() => {
+    calculateMargin();
+  }, [purchaseCost, sellPrice]);
 
-  //   useEffect(() => {
-  //     calculateMargin();
-  //   }, [purchaseCost, sellPrice]);
+  useEffect(()=>{
+    calculateCancelQty();
+  },[qtySold, cancelPercent])
 
-  //   useEffect(() => {
-  //     calculateDeliveredQty();
-  //   }, [qtySold, cancelOrder, rtoProduct]);
+  useEffect(() => {
+    calculateEffectiveRtoCost();
+  }, [rtoCost, rtoPercent, qtySold]);
 
-  //   useEffect(() => {
-  //     calculateEffectiveRTOcost();
-  //   }, [rtoCost, rtoProduct]);
+  useEffect(() => {
+    calculateRevenueCost();
+  }, [sellPrice, rtoQty, qtySold, cancelQty]);
 
-  //   useEffect(() => {
-  //     calculateRevenueCost();
-  //   }, [sellPrice, rtoProduct, qtySold, cancelOrder]);
+  useEffect(() => {
+    calculateProfitLoss();
+  }, [revenue, effectiveFacebookCost, purchaseCost, qtySold, effectiveRtoCost]);
 
-  //   useEffect(() => {
-  //     calculateProfitLoss();
-  //   }, [
-  //     revenue,
-  //     facebookCost,
-  //     purchaseCost,
-  //     qtySold,
-  //     cancelOrder,
-  //     rtoCost,
-  //     rtoProduct,
-  //   ]);
+  useEffect(()=>{
+    calculateEffectiveFacebookCost()
+  },[adsCost, qtySold])
 
   const contextValues = {
     purchaseCost,
@@ -108,13 +97,19 @@ export const FindWinningProductProvider = ({ children }) => {
     rtoPercent,
     adsCost,
     rtoCost,
+    effectiveRtoCost,
+    effectiveFacebookCost,
+    revenue,
+    profitLoss,
+    cancelQty,
+
     setPurchaseCost,
     setSellPrice,
     setQtySold,
     setCancelPercent,
     setRtoPercent,
     setAdsCost,
-    handlePurchseCost,
+    handlePurchaseCost,
     handleSellPrice,
     handleQtySold,
     handleCancelPercent,
@@ -124,15 +119,13 @@ export const FindWinningProductProvider = ({ children }) => {
     calculateMargin,
     calculateCancelQty,
     calculateRtoQty,
-    
-    
+
     rtoQty,
     setRtoQty,
-    cancelQty,
     setCancelQty,
-    
-    
+
     margin,
+
     //     deliveredQty,
     //     setDeliveredQty,
     //     setRtoCost,

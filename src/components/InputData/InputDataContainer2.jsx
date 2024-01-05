@@ -3,28 +3,28 @@ import InputTypeContainer from "./InputTypeContainer";
 import { FindWinningProductContext } from "../../context/FindWinningProductContext";
 
 const InputDataContainer2 = () => {
-  // const {
-  //   purchaseCost,
-  //   sellPrice,
-  //   qtySold,
-  //   cancelPercent,
-  //   rtoPercent,
-  //   adsCost,
-  //   rtoCost,
-  //   handleRtoCost
-  //   handlePurchseCost,
-  //   handleSellPrice,
-  //   handleQtySold,
-  //   handleCancelPercent,
-  //   handleRtoPercent,
-  //   handleAdsCost,
-  // } = useContext(FindWinningProductContext);
+  const {
+    purchaseCost,
+    sellPrice,
+    qtySold,
+    cancelPercent,
+    rtoPercent,
+    adsCost,
+    rtoCost,
+    handleRtoCost,
+    handlePurchaseCost,
+    handleSellPrice,
+    handleQtySold,
+    handleCancelPercent,
+    handleRtoPercent,
+    handleAdsCost,
+  } = useContext(FindWinningProductContext);
 
   const inputFields = [
     {
       name: "purchase price",
       state: purchaseCost,
-      handler: handlePurchseCost,
+      handler: handlePurchaseCost,
       min: 0,
       max: 1500,
     },
@@ -50,6 +50,13 @@ const InputDataContainer2 = () => {
       max: 100,
     },
     {
+      name: "RTO cost",
+      state: rtoCost,
+      handler: handleRtoCost,
+      min: 0,
+      max: 1500,
+    },
+    {
       name: "RTO %",
       state: rtoPercent,
       handler: handleRtoPercent,
@@ -66,7 +73,7 @@ const InputDataContainer2 = () => {
     },
   ];
   return (
-    <div className="min-w-[40%] border-dashed border-4 rounded-lg  px-10 py-2 flex flex-col gap-1 font-spline">
+    <div className="min-w-[40%] border-dashed border-secondary border-4 rounded-lg  px-10 py-2 flex flex-col gap-1 font-spline">
       {inputFields.map((field, index) => (
         <InputTypeContainer
           key={index}

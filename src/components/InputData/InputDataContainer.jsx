@@ -30,7 +30,7 @@ const InputDataContainer = () => {
         { name: 'Facebook total cost', state: facebookCost, handler: handleFacebookCost, min: 0, max: 50000 },
       ];
   return (
-    <div className="min-w-[40%] border-dashed border-4 rounded-lg  px-10 py-2 flex flex-col gap-1 font-spline">
+    <div className="min-w-[40%] border-secondary border-dashed border-4 rounded-lg  px-10 py-2 flex flex-col gap-1 font-spline">
         {inputFields.map((field, index) => (
         <InputTypeContainer
           key={index}z

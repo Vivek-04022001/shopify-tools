@@ -31,7 +31,7 @@ const DisplayContainer = () => {
     { value: profitLoss, label: 'Profit/Loss', isCurrency: profitLoss > 0 },
   ];
   return (
-    <div className=" flex flex-col flex-1 border-dashed border-4 px-10 py-2 gap-y-8">
+    <div className=" flex flex-col flex-1 border-secondary border-dashed border-4 px-10 py-2 gap-y-8">
       <h1 className="text-center font-semibold text-3xl md:text-6xl font-instrumental tracking-wide">
         After Sales Calculation
       </h1>

@@ -55,12 +55,9 @@ export const AfterSalesProvider = ({ children }) => {
     const facebookCostValue = parseFloat(facebookCost) || 0;
     const purchaseCostValue = parseFloat(purchaseCost) || 0;
     const qtySoldValue = parseFloat(qtySold) || 0;
-    const cancelOrderValue = parseFloat(cancelOrder) || 0;
-    const rtoProductValue = parseFloat(rtoProduct) || 0;
-    const rtoCostValue = parseFloat(rtoCost) || 0;
+    const EffectiveRtoCostValue = parseFloat(effectiveRtoCost) || 0;
 
-    const totalCost =
-      purchaseCostValue * qtySoldValue + rtoCostValue * rtoProductValue;
+    const totalCost = purchaseCostValue * qtySoldValue + EffectiveRtoCostValue;
 
     setProfitLoss(revenueValue - facebookCostValue - totalCost);
   };
@@ -83,15 +80,7 @@ export const AfterSalesProvider = ({ children }) => {
 
   useEffect(() => {
     calculateProfitLoss();
-  }, [
-    revenue,
-    facebookCost,
-    purchaseCost,
-    qtySold,
-    cancelOrder,
-    rtoCost,
-    rtoProduct,
-  ]);
+  }, [revenue, facebookCost, purchaseCost, qtySold, effectiveRtoCost]);
 
   const contextValues = {
     purchaseCost,
