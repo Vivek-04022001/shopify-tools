@@ -7,6 +7,10 @@ const Header = () => {
   const location = useLocation();
   return (
     <section className="relative  min-h-screen ">
+      <h1 className="text-2xl md:text-4xl font-extrabold text-center text-primary mb-8 px-4">
+        © Pixel Vista. All rights reserved. Please do not redistribute or claim
+        as your own.
+      </h1>
       <header className=" md:absolute md:top-1/2 top-0  left-10 md:-translate-x-1/2  transfrom md:-translate-y-1/2  ">
         <ul className="flex font-spline text-md  md:text-xl font-bold text-center justify-center items-center md:rotate-90">
           <li
@@ -33,13 +37,16 @@ const Header = () => {
           </li>
         </ul>
         <div className="md:hidden flex items-center flex-col mt-4 gap-2">
-        <h1 className="text-center text-secondary">{darkMode ? 'Light Mode' : 'Dark Mode'}</h1>
+          <h1 className="text-center text-secondary">
+            {darkMode ? "Light Mode" : "Dark Mode"}
+          </h1>
           <DarkMode />
         </div>
       </header>
-
       <div className="hidden  absolute top-0 left-0 space-y-2 m-4 p-1  md:flex flex-col justify-center gap-1">
-        <h1 className="text-center text-accent font-bold">{darkMode ? 'Light Mode' : 'Dark Mode'}</h1>
+        <h1 className="text-center text-accent font-bold">
+          {darkMode ? "Light Mode" : "Dark Mode"}
+        </h1>
         <DarkMode />
       </div>
       <Outlet />
