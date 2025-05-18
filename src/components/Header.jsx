@@ -7,9 +7,12 @@ const Header = () => {
   const location = useLocation();
   return (
     <section className="relative  min-h-screen ">
-      <h1 className="text-2xl md:text-4xl font-extrabold text-center text-primary mb-8 px-4">
-        © Pixel Vista. All rights reserved. Please do not redistribute or claim
-        as your own.
+      <h1 className="text-white text-lg md:text-xl font-extrabold text-center text-primary mb-8 px-4">
+        © Pixel Vista. All Rights Reserved. Any unauthorized copying,
+        redistribution, or claiming of this content as your own is strictly
+        forbidden. If you’re foolish enough to steal our work, prepare for swift
+        and relentless legal action. We will exhaust every possible resource to
+        make sure you regret your decision—publicly and painfully.
       </h1>
       <header className=" md:absolute md:top-1/2 top-0  left-10 md:-translate-x-1/2  transfrom md:-translate-y-1/2  ">
         <ul className="flex font-spline text-md  md:text-xl font-bold text-center justify-center items-center md:rotate-90">
@@ -43,7 +46,7 @@ const Header = () => {
           <DarkMode />
         </div>
       </header>
-      <div className="hidden  absolute top-0 left-0 space-y-2 m-4 p-1  md:flex flex-col justify-center gap-1">
+      <div className="hidden  absolute top-20 left-0 space-y-2 m-4 p-1  md:flex flex-col justify-center gap-1">
         <h1 className="text-center text-accent font-bold">
           {darkMode ? "Light Mode" : "Dark Mode"}
         </h1>
