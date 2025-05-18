@@ -26,7 +26,7 @@ const Header = () => {
           <span className="text-lg md:text-2xl font-extrabold">Warning</span>
         </div>
         <div className="text-base md:text-lg font-semibold text-center">
-          © Pixel Vista. All rights reserved.
+          © PixelVista. All rights reserved.
           <br />
           Unauthorized copying, redistribution, or claiming of this content is
           strictly prohibited.
